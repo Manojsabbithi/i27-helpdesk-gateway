@@ -8,6 +8,7 @@ def deployToGKE(String namespace, String envLabel) {
         sed -i "s|\\\${NAMESPACE}|${NAMESPACE}|g" k8s/*.yaml
         sed -i "s|\\\${IMAGE_NAME}|${IMAGE_NAME}|g" k8s/deploy.yaml
         sed -i "s|\\\${IMAGE_TAG}|${GIT_COMMIT}|g" k8s/deploy.yaml
+        sed -i "s|\\\${UI_ORIGIN}|*|g" k8s/configmap.yaml
         echo "Applying k8s manifests in ${envLabel} namespace"
         kubectl apply -f k8s/
         echo "Deployment to ${envLabel} namespace is completed"
