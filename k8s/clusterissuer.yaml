@@ -30,7 +30,7 @@
 # Point your domains to the nginx Ingress Controller EXTERNAL-IP:
 #   i27helpdesk.in          -> EXTERNAL-IP
 #   prod.i27helpdesk.in     -> EXTERNAL-IP
-#   gateway.i27academy.in   -> EXTERNAL-IP
+#   gateway.i27helpdesk.in   -> EXTERNAL-IP
 #
 # After applying Ingress resources, cert-manager will auto-issue
 # and renew Let's Encrypt certificates. Check cert status with:

@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - gateway.i27academy.in
+        - gateway.i27helpdesk.in
       secretName: i27-helpdesk-gateway-tls
   rules:
-    - host: gateway.i27academy.in
+    - host: gateway.i27helpdesk.in
       http:
         paths:
           - path: /
