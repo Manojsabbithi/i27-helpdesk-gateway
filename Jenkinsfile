@@ -42,7 +42,7 @@ pipeline {
         // Currently i am using docker hub registry
         REGISTRY_URL = "docker.io"
         // later u changed to jfrog ====> jfrog.hsbc.com
-        IMAGE_REPOSITORY = "devopswithcloudhub/i27-helpdesk-gateway"
+        IMAGE_REPOSITORY = "manojdock97/i27-helpdesk-gateway"
         // calling my docker creds into a variable
         REGISTRY_CREDENTIALS_ID = credentials('docker-credentials')
 
