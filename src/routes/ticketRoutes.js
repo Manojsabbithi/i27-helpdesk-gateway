@@ -38,7 +38,7 @@ router.get("/tickets", async (req, res) => {
     for (const userId of userIds) {
       try {
         const userRes = await axios.get(
-          `${AUTH_SERVICE}/users/${userId}`,
+          `${AUTH_SERVICE}/auth/users/${userId}`,
           {
             headers: {
               Authorization: req.headers["authorization"],
