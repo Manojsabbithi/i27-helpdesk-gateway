@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: i27-helpdesk-gateway
+  namespace: i27-helpdesk-dev
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: i27-helpdesk-gateway
+
+  template:
+    metadata:
+      labels:
+        app: i27-helpdesk-gateway
+
+    spec:
+      containers:
+        - name: i27-helpdesk-gateway
+          image: __IMAGE_URI__
+
+          ports:
+            - containerPort: 8080
+
+          envFrom:
+            - configMapRef:
+                name: i27-helpdesk-gateway-config
+
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: i27-helpdesk-gateway-secret
+                  key: JWT_SECRET
+
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            failureThreshold: 12
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
+
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"

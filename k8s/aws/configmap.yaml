@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: i27-helpdesk-gateway-config
+  namespace: i27-helpdesk-dev
+data:
+  SERVER_PORT: "8080"
+
+  # Temporary local UI origin.
+  # We will update this when the AWS UI/ALB URL exists.
+  UI_ORIGIN: "http://localhost:3000"
+
+  AUTH_SERVICE_URL: "http://i27-helpdesk-auth"
+  TICKET_SERVICE_URL: "http://i27-helpdesk-ticket"
+  COMMENT_SERVICE_URL: "http://i27-helpdesk-comment"
+
+  # Attachment Service is not deployed yet.
+  # Gateway requires this variable at startup, so point it
+  # at the future Kubernetes Service name for now.
+  ATTACHMENT_SERVICE_URL: "http://i27-helpdesk-attachment"

@@ -1,0 +1,10 @@
+.git
+.gitignore
+node_modules
+npm-debug.log*
+.env
+.env.*
+k8s
+Jenkinsfile
+Jenkinsfile.aws
+README.md
