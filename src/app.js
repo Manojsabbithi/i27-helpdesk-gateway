@@ -54,21 +54,22 @@ app.use(
 
 // 🔹 PUBLIC ROUTES (NO AUTH)
 app.use("/auth", require("./routes/authRoutes"));
-app.use("/attachments", require("./routes/attachmentRoutes"));
 
 // 🔐 AUTH MIDDLEWARE (GLOBAL)
 app.use((req, res, next) => {
   if (
     req.path.startsWith("/auth") ||
     req.path.startsWith("/healthz") ||
-    req.path.startsWith("/readyz") ||
-    req.path.startsWith("/attachments")
+    req.path.startsWith("/readyz")
   ) {
     return next();
   }
 
   authenticate(req, res, next);
 });
+
+// 📎 PROTECTED ATTACHMENT ROUTES
+app.use("/attachments", require("./routes/attachmentRoutes"));
 
 // 🔹 PROTECTED ROUTES
 app.use("/", require("./routes/ticketRoutes"));
