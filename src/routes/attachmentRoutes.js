@@ -46,6 +46,33 @@ router.post("/", async (req, res) => {
 
 /**
  * ======================================
+ * 📎 GET /attachments?ticketId=<id>
+ * List attachments for a ticket
+ * ======================================
+ */
+router.get("/", async (req, res) => {
+  try {
+    const response = await axios({
+      method: "GET",
+      url: `${ATTACHMENT_SERVICE_URL}/attachments`,
+      params: req.query,
+      headers: {
+        ...req.headers,
+        host: undefined,
+      },
+      validateStatus: () => true,
+    });
+
+    res.status(response.status).json(response.data);
+
+  } catch (err) {
+    console.error("❌ Attachment listing gateway error:", err.message);
+    res.status(502).json({ error: "Attachment listing failed" });
+  }
+});
+
+/**
+ * ======================================
  * 📎 GET /attachments/:id
  * Stream download → attachment-service
  * ======================================
