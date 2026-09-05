@@ -6,8 +6,6 @@ if (!JWT_SECRET) {
   throw new Error("JWT_SECRET environment variable is required");
 }
 
-//const JWT_SECRET = process.env.JWT_SECRET || "i27academy-secret-key-which-is-32chars";
-
 function authenticate(req, res, next) {
   const authHeader = req.headers["authorization"];
 
@@ -23,8 +21,6 @@ function authenticate(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log("✅ JWT decoded in gateway", decoded);
-
     req.user = decoded;
 
     // ✅ Inject user context safely

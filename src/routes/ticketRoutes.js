@@ -14,13 +14,6 @@ const AUTH_SERVICE = process.env.AUTH_SERVICE_URL;
  */
 router.get("/tickets", async (req, res) => {
   try {
-    // 🔎 DEBUG (keep for now, remove later)
-    console.log("ADMIN /tickets headers:", {
-      authorization: req.headers["authorization"],
-      userId: req.headers["x-user-id"],
-      role: req.headers["x-user-role"],
-    });
-
     const ticketRes = await axios.get(`${TICKET_SERVICE}/tickets`, {
       headers: {
         Authorization: req.headers["authorization"],
